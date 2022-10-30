@@ -19,5 +19,10 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '18'
-      - run: npm run predeploy
-      - run: npm run deploy -- -m "Deploy the app from prod"
+      - name: Deploy
+      - uses: JamesIves/github-pages-deploy-action@3.6.2
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: src/out
+          CLEAN: true
